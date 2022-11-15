@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
 Route::get('/welcome', [WelcomeController::class, 'index'])->name('welcome-index');
-Route::get('/welcome-view', [WelcomeController::class, 'view'])->name('welcome-view');
+Route::get('/welcome/view', [WelcomeController::class, 'view'])->name('welcome-view');
 
 
 /*  Template Controller */
