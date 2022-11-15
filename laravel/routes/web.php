@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*  Welcome Controller */
+use App\Http\Controllers\WelcomeController;
+
+Route::get('/welcome', [WelcomeController::class, 'index'])->name('welcome-index');
+Route::get('/welcome-view', [WelcomeController::class, 'view'])->name('welcome-view');
