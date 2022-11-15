@@ -27,3 +27,8 @@ Route::get('/template', [TemplateController::class, 'index'])->name('template-in
 Route::get('/template/news', [TemplateController::class, 'news'])->name('template-news');
 Route::get('/template/article', [TemplateController::class, 'article'])->name('template-article');
 
+/*  Login Controller */
+use App\Http\Controllers\LoginController;
+
+Route::get('/login', [LoginController::class, 'form'])->name('login-form');
+Route::post('/login', [LoginController::class, 'check'])->name('login-check');
