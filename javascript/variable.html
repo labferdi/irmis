@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascipt Variable</title>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <div class="container mt-5 mb-5">
+        <h1>Javascript</h1>
+        <h2 class="navigation mt-5">String</h2>
+        <div class="card">
+            <div class="card-body">
+                <code>
+                    var text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry";
+                </code>
+            </div>
+        </div>
+
+        <h2 class="navigation mt-5">Integer</h2>
+        <div class="card">
+            <div class="card-body">
+                <p><code>let a_int = 5;</code></p>
+                <p><code>let b_string = "5";</code></p>
+                <p><code>let c_float = 3.14;</code></p>
+            </div>
+        </div>
+
+        <h2 class="navigation mt-5">String + Integer</h2>
+        <div class="card">
+            <div class="card-body">
+                <code>
+                    let str_int = "ini string dan " + 5 + " digabung";
+                </code>
+            </div>
+        </div>
+
+        <h2 class="navigation mt-5">Array</h2>
+        <div class="card">
+            <div class="card-body">
+                <p><code>var category = ['tagihan', 'pakaian', 'makanan'];</code></p>
+
+                <p>
+                    <code>console.log( category.length );</code><br>
+                    <span class="text-black-50">// 3</span>
+                </p>
+                <p>
+                    <code>console.log( category[0] );</code><br>
+                    <span class="text-black-50">// tagihan</span>
+                </p>
+                <p>
+                    <code>console.log( category.indexOf('pakaian') );</code><br>
+                    <span class="text-black-50">// 1</span>
+                </p>
+                <p>
+                    <code>console.log( category.indexOf('lorem') );</code><br>
+                    <span class="text-black-50">// -1</span>
+                </p>
+                <p>
+                    <code>console.log( category.join(', ') );</code><br>
+                    <span class="text-black-50">// tagihan, pakaian, makanan</span>
+                </p>
+            </div>
+        </div>
+
+        <h2 class="navigation mt-5">Object</h2>
+        <div class="card">
+            <div class="card-body">
+                <p><code>var promo = {</code></p>
+                <p class="pl-5"><code>name : 'promo oktober 2.22',</code></p>
+                <p class="pl-5"><code>minimum_price : 100000,</code></p>
+                <p class="pl-5"><code>discount : 0.5,</code></p>
+                <p class="pl-5"><code>category : ['tagihan', 'pakaian', 'makanan']</code></p>
+                <p><code>}</code></p>
+
+                <p>
+                    <code>console.log( promo.name );</code><br>
+                    <span class="text-black-50">// promo oktober 2.22</span>
+                </p>
+                <p>
+                    <code>console.log( promo.category[0] );</code><br>
+                    <span class="text-black-50">// tagihan</span>
+                </p>
+                <p>
+                    <code>console.log( promo.category.join(', ') );</code><br>
+                    <span class="text-black-50">// tagihan, pakaian, makanan</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../bootstrap/js/jquery-3.6.1.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
