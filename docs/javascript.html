@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascipt Variable</title>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">     -->
+
+
+    <style>
+        .code {
+            background-color: #272822;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #F8F8F2;
+        }
+        .c { color: #75715E; }
+        .b { color: #66D9EF; }
+        .r { color: #F92672; }
+        .y { color: #E6DB74; }
+        .o { color: #FD971F; }
+        .p { color: #AE81FF; }
+        .p2 { color: #C792EA; }
+        .g { color: #A6E22E; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="#">CSS</a>
+                    <a class="nav-link active" href="javascript.html">Javascipt</a>
+                    <a class="nav-link" href="laravel.html">Laravel</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 mb-5">
+        <h1>Javascript</h1>
+
+        <h2 class="navigation mt-5">Variable</h2>
+        <div class="card mt-3">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item"> <a class="nav-link active" href="#var-str-int" role="tab"
+                            data-bs-toggle="tab">String, Int</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#var-arr" role="tab" data-bs-toggle="tab">Array</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="#var-obj" role="tab" data-bs-toggle="tab">Object</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body tab-content">
+                <div class="tab-pane fade show active" id="var-str-int" role="tabpanel">
+                    <div class="code">
+                        <span class="c">// string</span><br>
+                        <p><span class="b">let</span> str_int <span class="r">=</span> <span class="y">"ini string"</span>;</p>
+
+                        <span class="c">// int</span>
+                        <p><span class="b">let</span> a_int <span class="r">=</span> <span class="p">5</span>;</p>
+
+                        <span class="c">// string int</span>
+                        <p><span class="b">let</span> b_string <span class="r">=</span> <span class="y">"5"</span>;</p>
+
+                        <span class="c">// float</span>
+                        <p><span class="b">let</span> c_float <span class="r">=</span> <span class="p">3.14</span>;</p>
+
+                        <span class="c">// string + int</span>
+                        <p><span class="b">let</span> str_int <span class="r">=</span> <span class="y">"ini string dan "</span> <span class="r">+</span> <span class="p">5</span> <span class="r">+</span> <span class="y">" digabung"</span>; </p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="var-arr" role="tabpanel">
+                    <div class="code">
+                    <p><span class="b">let</span> category <span class="r">=</span> <span class="y"><span class="o">[</span>'tagihan'</span>, <span class="y">'pakaian'</span>, <span class="y">'makanan'</span><span class="o">]</span>;</p>
+                    <p>
+                        console.<span class="g">log</span><span class="o">(</span> category.length <span class="o">)</span>;<br>
+                        <span class="c">// 3</span>
+                    </p>
+                    <p>
+                        console.<span class="g">log</span><span class="o">(</span> category<span class="p2">[</span><span class="p">0</span><span class="p2">]</span> <span class="o">)</span>;<br>
+                        <span class="c">// tagihan</span>
+                    </p>
+                    <p>
+                        console.<span class="g">log</span><span class="o">(</span> category.<span class="g">indexOf</span><span class="p2">(</span><span class="y">'pakaian'</span><span class="p2">)</span> <span class="o">)</span>;<br>
+                        <span class="c">// 1</span>
+                    </p>
+                    <p>
+                        console.<span class="g">log</span><span class="o">(</span> category.<span class="g">indexOf</span><span class="p2">(</span><span class="y">'lorem'</span><span class="p2">)</span> <span class="o">)</span>;<br>
+                        <span class="c">// -1</span>
+                    </p>
+                    <p>
+                        console.<span class="g">log</span><span class="o">(</span> category.<span class="g">join</span><span class="p2">(</span><span class="y">', '</span><span class="p2">)</span> <span class="o">)</span>;<br>
+                        <span class="c">// tagihan, pakaian, makanan</span>
+                    </p>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="var-obj" role="tabpanel">
+                    <div class="code">
+                        <p>
+                            <span class="b">let</span> promo <span class="r">=</span> <span class="o">{</span><br>
+                            <span class="ps-5">name : <span class="y">'promo oktober 2.22'</span>,</span><br>
+                            <span class="ps-5">minimum_price : <span class="p">100000</span>,</span><br>
+                            <span class="ps-5">discount : <span class="p">0.5</span>,</span><br>
+                            <span class="ps-5">category : <span class="p2">[</span><span class="y">'tagihan'</span>, <span class="y">'pakaian'</span>, <span class="y">'makanan'</span><span class="p2">]</span></span><br>
+                            <span class="o">}</span>
+                        <p>
+
+                        <p>
+                            console.<span class="g">log</span><span class="o">(</span> promo.name <span class="o">)</span>;<br>
+                            <span class="c">// promo oktober 2.22</span>
+                        </p>
+                        <p>
+                            console.<span class="g">log</span><span class="o">(</span> promo.category<span class="p2">[</span><span class="p">0</span><span class="p2">]</span> <span class="o">)</span>;<br>
+                            <span class="c">// tagihan</span>
+                        </p>
+                        <p>
+                            console.<span class="g">log</span><span class="o">(</span> promo.category.<span class="g">join</span><span class="p2">(</span><span class="y">', '</span><span class="p2">)</span> <span class="o">)</span>;<br>
+                            <span class="c">// tagihan, pakaian, makanan</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="navigation mt-5">Comparison</h2>
+        <div class="card mt-3">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item"> <a class="nav-link active" href="#var-if-else" role="tab"
+                            data-bs-toggle="tab">If else</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="#var-switch" role="tab" data-bs-toggle="tab">Switch
+                            Case</a> </li>
+                </ul>
+            </div>
+            <div class="card-body tab-content">
+                <div class="tab-pane fade show active" id="var-if-else" role="tabpanel">
+                    <p><code>let time = 15;</code></p>
+                    <p>
+                        <code>if (time < 10) {</code><br>
+                        <code class="ps-5">greeting = "Good morning";</code><br>
+                        <code>} else if (time < 20) {</code><br>
+                        <code class="ps-5">greeting = "Good day";</code><br>
+                        <code>} else {</code><br>
+                        <code class="ps-5">greeting = "Good evening";</code><br>
+                        <code>}</code>
+                    </p>
+                    <p>
+                        <code>console.log( greeting );</code><br>
+                        <small class="text-muted">// Good day</small>
+                    </p>
+                </div>
+                <div class="tab-pane fade" id="var-switch" role="tabpanel">
+                    <p><code>let answer = 'a';</code></p>
+                    <p>
+                        <code>switch (answer) {</code><br>
+                        <code class="ps-4">case 'a':</code><br>
+                        <code class="ps-5">greeting = "Good morning";</code><br>
+                        <code class="ps-5">break;</code><br>
+                        <code class="ps-4">case 'b':</code><br>
+                        <code class="ps-5">greeting = "Good day";</code><br>
+                        <code class="ps-5">break;</code><br>
+                        <code class="ps-4">default:</code><br>
+                        <code class="ps-5">greeting = "Good evening";</code><br>
+                        <code>}</code>
+                    </p>
+                    <p>
+                        <code>console.log( greeting );</code><br>
+                        <small class="text-muted">// Good morning</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let promo = {
+            name : 'promo oktober 2.22',
+            minimum_price : 100000,
+            discount : 0.5,
+            category : ['tagihan', 'pakaian', 'makanan']
+        }
+
+        console.log( promo.name );
+        // promo oktober 2.22
+
+        console.log( promo.category[0] );
+        // tagihan
+
+        console.log( promo.category.join(', ') );
+        // tagihan, pakaian, makanan
+    </script>
+</body>
+
+</html>
