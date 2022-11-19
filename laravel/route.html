@@ -29,7 +29,7 @@
         </div>
     </nav>
 
-    <main class="container-fluid">
+    <main class="container-fluid mb-5">
         <div class="row">
             <nav class="col-sm-2 d-flex flex-column flex-shrink-0 px-3">
                 <ul class="nav nav-pills flex-column mb-auto">
@@ -50,11 +50,11 @@
             
             <div class="col-sm-10">
                 <div class="container-fluid">
-                    <h3>Route</h3>
+                    <h1>Route</h1>
                     <p>Route berfungsi untuk mengatur lalu lintas <i>request</i> dari user dengan aplikasi laravel yang kita buat, apakah akan diarahkan ke <i>controller</i> atau langsung ke <i>view</i>. </p>
                     <p>Semua route di dalam suatu aplikasi laravel didefinisikan di dalam file <code>routes/web.php</code>. Rute yang telah didefinisikan dalam diakses dengan memasukkan rute URL pada browser Anda. </p>
 
-                    <h5 id="basic">Basic Route</h5>
+                    <h3 id="basic"># Basic Route</h3>
                     <p>Berikut contoh pembuatan rute <code>hello</code></p>
                     <div class="code">
                         <p><span class="r">&lt;?php</span></p>
@@ -67,9 +67,21 @@
                     </div>
                     <img src="images/route-hello.png" alt="route-hello" class="img-thumbnail">
 
-                    <p></p>
+                    <p class="mt-3">Berikut contoh pembuatan rute <code>welcome</code> diarahkan ke controller</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p>
+                            <span class="r">use </span>Illuminate\Support\Facades\<span class="b">Route</span>;<br>
+                            <span class="r">use </span>App\Http\Controllers\<span class="b">WelcomeController</span>;
+                        </p>
+                        <p>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/welcome'</span>, <span class="p">[</span><span class="b">WelcomeController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span>;
+                        </p>
+                    </div>
 
-                    <h5 id="parameter">Parameter</h5>
+                    <hr class="my-5">
+
+                    <h3 id="parameter"># Parameter</h3>
                     <p>Anda dapat menambahkan parameter ke dalam rute URL yang anda tentukan. Penambahan parameter ini terdapat 2 jenis,</p>
                     <p class="fw-bold">1. Required parameter</p>
                     <div class="code">
@@ -109,8 +121,43 @@
                         </div>
                     </div>
 
-                    <p></p>
+                    <hr class="my-5">
 
+                    <h3 id="prefix"># Prefix</h3>
+                    <p>Di laravel, Anda dapat menggabungkan beberapa rute URL yang memiliki <code>prefix</code> sama dikelompokan menjadi satu, misalkan</p>
+                    <p>
+                        <code>http://localhost:8000/admin/login</code> <br>
+                        <code>http://localhost:8000/admin/profile</code>
+                    </p>
+                    <p>Dalam pendefinisiannya Anda dapat menuliskan sebagai berikut</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">use </span>Illuminate\Support\Facades\<span class="b">Route</span>;</p>
+                        <p>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">prefix</span><span class="o">(</span><span class="y">'admin'</span><span class="o">)</span><span class="r">-></span><span class="g">group</span><span class="o">(</span><span class="b">function</span><span class="p2">(){</span>
+                        </p>
+                        <p>
+                            <span class="b ps-4">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'login'</span>, <span class="b">function</span><span class="p2">(</span><span class="p2">){</span><br>
+                            <span class="r ps-5">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'admin login'</span><span class="b">)</span>;<br>
+                            <span class="p2 ps-4">}</span><span class="o">)</span>;
+                        </p>
+                        <p>
+                            <span class="b ps-4">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'profile'</span>, <span class="b">function</span><span class="p2">(<span class="p2">){</span><br>
+                            <span class="r ps-5">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'admin profile'</span><span class="b">)</span>;<br>
+                            <span class="p2 ps-4">}</span><span class="o">)</span>;
+                        </p>
+                        <p>
+                            <span class="p2">}</span><span class="o">)</span>;
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="images//route-prefix-1.png" alt="route-prefix-1" class="img-thumbnail">
+                        </div>
+                        <div class="col-6">
+                            <img src="images/route-prefix-2.png" alt="route-prefix-2" class="img-thumbnail">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
