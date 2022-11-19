@@ -1,0 +1,16 @@
+.code {
+    background-color: #272822;
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #F8F8F2;
+    margin-bottom: 1rem;
+}
+.c { color: #75715E; }
+.b { color: #66D9EF; }
+.r { color: #F92672; }
+.y { color: #E6DB74; }
+.o { color: #FD971F; }
+.p { color: #AE81FF; }
+.p2 { color: #C792EA; }
+.g { color: #A6E22E; }
