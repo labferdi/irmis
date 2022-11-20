@@ -22,5 +22,14 @@ class WelcomeController extends Controller
         return view('welcome_view', $data);
 
     }
+
+    public function param($parameter = null){
+        
+        if($parameter){
+            return response('ini welcome dengan parameter '.$parameter);
+        }
+        
+        return response('ini welcome tanpa parameter');
+    }
     
 }
