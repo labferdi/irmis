@@ -2,7 +2,6 @@
 
 The Laravel framework has a few system requirements
 
-- Minim
 - PHP >= 7.3
 - BCMath PHP Extension
 - Ctype PHP Extension
