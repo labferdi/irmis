@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use Route;
 
 class WelcomeController extends Controller
 {
 
     public function index(){
-        return response('ini welcome index');
+        $url = route('welcome-param', [20]);
+        return response('ini welcome index :'. $url);
     }
 
 

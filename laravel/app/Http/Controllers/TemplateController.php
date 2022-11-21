@@ -19,9 +19,10 @@ class TemplateController extends Controller
     }
 
 
-    public function article()
+    public function article($id = null)
     {
-        return view('template.article');
+        $data = ['id' => $id];
+        return view('template.article', $data);
     }
 
 }
