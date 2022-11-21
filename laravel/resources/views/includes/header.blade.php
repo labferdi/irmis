@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('template-index') }}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('page-index') }}">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('template-news') }}">News</a>
+                <a class="nav-link" href="{{ route('user-index') }}">User</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('template-article') }}">Article</a>
+                <a class="nav-link" href="{{ route('user-detail', 10) }}">User ke 10</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('template-article', 20) }}">Article ke 20</a>
+                <a class="nav-link" href="{{ route('user-admin') }}">Admin</a>
             </li>
         </ul>
     </div>

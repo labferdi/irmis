@@ -12,17 +12,4 @@ class TemplateController extends Controller
         return view('template.index');
     }
 
-
-    public function news()
-    {
-        return view('template.news');
-    }
-
-
-    public function article($id = null)
-    {
-        $data = ['id' => $id];
-        return view('template.article', $data);
-    }
-
 }

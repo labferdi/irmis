@@ -37,9 +37,12 @@ Route::get('/welcome/param/{param?}', [WelcomeController::class, 'param'])
 /*  Template Controller */
 use App\Http\Controllers\TemplateController;
 
-Route::get('/template', [TemplateController::class, 'index'])->name('template-index');
-Route::get('/template/news', [TemplateController::class, 'news'])->name('template-news');
-Route::get('/template/article/{id?}', [TemplateController::class, 'article'])
-    ->where('id', '[0-9]+')
-    ->name('template-article');
+Route::get('/', [TemplateController::class, 'index'])->name('page-index');
 
+
+/*  user Controller */
+use App\Http\Controllers\UserController;
+
+Route::get('/user', [UserController::class, 'index'])->name('user-index');
+Route::get('/user/admin/{id?}', [UserController::class, 'admin'])->name('user-admin');
+Route::get('/user/{id}', [UserController::class, 'detail'])->name('user-detail');
