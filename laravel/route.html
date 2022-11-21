@@ -88,9 +88,13 @@
                         <p><span class="r">&lt;?php</span></p>
                         <p><span class="r">use </span>Illuminate\Support\Facades\<span class="b">Route</span>;</p>
                         <p>
-                        <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/{id}'</span>, <span class="b">function</span><span class="p2">(</span>$id<span class="p2">){</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/{id}'</span>, <span class="b">function</span><span class="p2">(</span>$id<span class="p2">){</span><br>
                             <span class="r ps-5">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'ini user ke '.$id</span><span class="b">)</span>;<br>
                             <span class="p2">}</span><span class="o">)</span>;
+                        </p>
+                        <p>
+                            <span class="c"># controller</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/{id}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span>;
                         </p>
                     </div>
                     <div class="mb-3">
@@ -102,14 +106,13 @@
                         <p><span class="r">&lt;?php</span></p>
                         <p><span class="r">use </span>Illuminate\Support\Facades\<span class="b">Route</span>;</p>
                         <p>
-                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/admin/{id?}'</span>, <span class="b">function</span><span class="p2">(</span>$id <span class="r">=</span> <span class="p">null</span><span class="p2">){</span><br>
-                            <span class="r ps-5">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'ini admin ke '.$id</span><span class="b">)</span>;<br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/admin/{name?}'</span>, <span class="b">function</span><span class="p2">(</span>$name <span class="r">=</span> <span class="y">'administrator'</span><span class="p2">){</span><br>
+                            <span class="r ps-5">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'Halo '.$name</span><span class="b">)</span>;<br>
                             <span class="p2">}</span><span class="o">)</span>;
                         </p>
                         <p>
-                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/admin/{id?}'</span>, <span class="b">function</span><span class="p2">(</span>$id <span class="r">=</span> <span class="p">999</span><span class="p2">){</span><br>
-                            <span class="r ps-5">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'ini admin ke '.$id</span><span class="b">)</span>;<br>
-                            <span class="p2">}</span><span class="o">)</span>;
+                            <span class="c"># controller</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/admin/{name?}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'admin'</span><span class="p">]</span><span class="o">)</span>;
                         </p>
                     </div>
                     <div class="row">
