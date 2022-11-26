@@ -126,6 +126,33 @@
 
                     <hr class="my-5">
 
+                    <h3 id="prefix"># Regular Expression Constraints</h3>
+                    <p>Parameter yang ditambahkan ke dalam rute URL dapat Anda batasi dengan beberapa format <code>where</code> sebagai berikut, </p>
+                    <div class="code">
+                        <p>
+                            <span class="c"># Number only</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/{id}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span><span class="r">-></span><span class="g">where</span><span class="o">(</span><span class="y">'id'</span>, <span class="y">'[0-9]+'</span><span class="o">)</span>;<br>
+                            <span class="c"># or</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/{id}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span><span class="r">-></span><span class="g">whereNumber</span><span class="o">(</span><span class="y">'id'</span><span class="o">)</span>;
+                        </p>
+
+                        <p>
+                            <span class="c"># Alphabet only</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/admin/{name?}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span><span class="r">-></span><span class="g">where</span><span class="o">(</span><span class="y">'name'</span>, <span class="y">'[A-Za-z]+'</span><span class="o">)</span>;<br>
+                            <span class="c"># or</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/admin/{name?}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span><span class="r">-></span><span class="g">whereAlpha</span><span class="o">(</span><span class="y">'name'</span><span class="o">)</span>;
+                        </p>
+
+                        <p>
+                            <span class="c"># Alphabet & Number only</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/admin/{name?}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span><span class="r">-></span><span class="g">where</span><span class="o">(</span><span class="y">'name'</span>, <span class="y">'[0-9A-Za-z]+'</span><span class="o">)</span>;<br>
+                            <span class="c"># or</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user/admin/{name?}'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span><span class="r">-></span><span class="g">whereAlphaNumeric</span><span class="o">(</span><span class="y">'name'</span><span class="o">)</span>;
+                        </p>
+                    </div>
+                    
+                    <hr class="my-5">
+
                     <h3 id="prefix"># Prefix</h3>
                     <p>Di laravel, Anda dapat menggabungkan beberapa rute URL yang memiliki <code>prefix</code> sama dikelompokan menjadi satu, misalkan</p>
                     <p>
