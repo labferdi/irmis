@@ -37,13 +37,13 @@
                         <a class="nav-link link-dark" href="index.html">Setup</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-dark" href="route.html">Route</a>
+                        <a class="nav-link link-dark" href="#">Route</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-dark active" href="#">Controller</a>
+                        <a class="nav-link link-dark" href="controller.html">Controller</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-dark" href="requests.html">Requests</a>
+                        <a class="nav-link link-dark active" href="#">Requests</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-dark" href="view.html">View</a>
@@ -53,43 +53,35 @@
             
             <div class="col-sm-10">
                 <div class="container-fluid">
-                    <h1>Controller</h1>
-                    <p>Controller umumnya untuk digunakan untuk menangani keseluruhan <em>request</em> dari aplikasi yang Anda buat. Sebagai contohnya <code>UserController</code> untuk menangani selutuh <em>request</em> yang berhubungan dengan data <em>user</em> seperti menampilkan, <em>input</em>, <em>update</em> dan <em>delete</em>.</p>
-                    <p>Secara <em>default</em> file controller disimpan di dalam folder <code>app/http/Controllers</code>.</p>
+                    <h1>Requests</h1>
+                    <p>Laravel telah menyediakan <em>object oriented class</em> dengan nama <code>Request</code> atau <code>Illuminate\Http\Request</code>. <em>Class</em> ini digunakan untuk menerima data <em>HTTP Request</em> dari browser, seperti <em>form input</em>, <em>cookies</em> dan <em>files</em>.</p>
+                    
+                    <h3 id="access"># Access the requests</h3>
 
-                    <h3 id="create"># Create</h3>
-                    <p>Dengan menggunakan laravel artisan <em>command line</em> Anda dapat membuat <em>controller</em> dengan menggunakan perintah sebegai berikut</p>
+                    <p>Dalam penggunakan <code>class</code> <em>Request</em>terdapat 2 cara, yaitu</p>
                     <div class="code">
-                        php artisan make:controller UserController
+                        <span class="r">use </span>Illuminate\Http\<span class="b">Request</span>;
                     </div>
-
-                    <hr class="my-5">
-
-                    <h3 id="basic"># Basic</h3>
-                    <p>Untuk selanjutkan kita akan melihat <code>UserController</code> yang telah dibuat sebelumnya.</p>
+                    <p>Atau</p>
+                    <div class="code">
+                        <span class="r">use </span><span class="b">Request</span>;
+                    </div>
+                    <p>Seperti contoh <code>UserController</code> berikut ini yang akan menerima data <em>HTTP request</em> <code>id</code></p>
                     <div class="code">
                         <p><span class="r">&lt;?php</span></p>
                         <p><span class="r">namespace </span><span class="g">App\Http\Controllers</span>;</p>
-                        <p><span class="r">use </span>Illuminate\Http\<span class="b">Request</span>;</p>
+                        <p>
+                            <span class="c"># Load Request class</span><br>
+                            <span class="r">use </span>Illuminate\Http\<span class="b">Request</span>;
+                        </p>
                         <p>
                             <span class="b">class</span> <span class="g">UserController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
                             <span class="y">{</span><br>
-                            <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">index</span><span class="p">()</span><br>
+                            <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">index</span><span class="p">(</span><span class="b">Request</span> $request, $id<span class="p">)</span><br>
                             <span class="ps-4 p">{</span><br>
-                            <span class="ps-5 r">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'view dari user controller'</span><span class="b">)</span>; <br>
+                            <span class="ps-5 r">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'ID user :'</span><span class="r">.</span>$id<span class="b">)</span>; <br>
                             <span class="ps-4 p">}</span><br>
                             <span class="y">}</span>
-                        </p>
-                    </div>
-                    <p>Untuk selanjutnya tentukan rute URL <code>/user</code> pada file <code>routes/web.php</code> yang diarahkan ke <code>UserController</code> agar dapat diakses melalui browser</p>
-                    <div class="code">
-                        <p><span class="r">&lt;?php</span></p>
-                        <p>
-                            <span class="r">use </span>Illuminate\Support\Facades\<span class="b">Route</span>;<br>
-                            <span class="r">use </span>App\Http\Controllers\<span class="b">UserController</span>;
-                        </p>
-                        <p>
-                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'/user'</span>, <span class="p">[</span><span class="b">UserController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span>;
                         </p>
                     </div>
                 </div>
