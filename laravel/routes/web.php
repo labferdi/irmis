@@ -44,5 +44,10 @@ Route::get('/', [TemplateController::class, 'index'])->name('page-index');
 use App\Http\Controllers\UserController;
 
 Route::get('/user', [UserController::class, 'index'])->name('user-index');
-Route::get('/user/admin/{id?}', [UserController::class, 'admin'])->name('user-admin');
-Route::get('/user/{id}', [UserController::class, 'detail'])->name('user-detail');
+Route::get('/user/{id}', [UserController::class, 'detail'])->name('user-detail')->where('id', '[0-9]+');
+
+Route::get('admin/{id?}', [UserController::class, 'admin'])->name('user-admin');
+
+Route::get('login', [UserController::class, 'login'])->name('user-login');
+Route::post('login', [UserController::class, 'loginCheck'])->name('user-login-check');
+
