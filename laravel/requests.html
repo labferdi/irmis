@@ -50,12 +50,12 @@
                     </li>
                 </ul>
             </nav>
-            
+
             <div class="col-sm-10">
                 <div class="container-fluid">
                     <h1>Requests</h1>
                     <p>Laravel telah menyediakan <em>object oriented class</em> dengan nama <code>Request</code> atau <code>Illuminate\Http\Request</code>. <em>Class</em> ini digunakan untuk menerima data <em>HTTP Request</em> dari browser, seperti <em>form input</em>, <em>cookies</em> dan <em>files</em>.</p>
-                    
+
                     <h3 id="access"># Access the requests</h3>
 
                     <p>Dalam penggunakan <code>class</code> <em>Request</em>terdapat 2 cara, yaitu</p>
@@ -82,6 +82,44 @@
                             <span class="ps-5 r">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'ID user :'</span><span class="r">.</span>$id<span class="b">)</span>; <br>
                             <span class="ps-4 p">}</span><br>
                             <span class="y">}</span>
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="access"># Request Input</h3>
+                    <p>Pada bagian berikut akan dijelaskan beberapa metode untuk menerima <em>request</em> data yang dikirim oleh user.</p>
+                    <p class="fw-bold"># Retrieve input form HTML form</p>
+                    <p>Menerima data dari <em>form input</em> HTML dengan nama <code>email</code>.</p>
+                    <div class="code">
+                        $email <span class="r"> =</span> $request<span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">'email'</span><span class="b">)</span>;
+                    </div>
+                    <p class="fw-bold"># Retrieve input form query string</p>
+                    <p>
+                        Menerima data dari <em>query string</em> yang terdapat di URL, seperti <code>http://localhost:3000/laravel.php?q=laravel</code>
+                    </p>
+                    <div class="code">
+                        $query <span class="r"> =</span> $request<span class="r">-></span><span class="g">query</span><span class="b">(</span><span class="y">'q'</span><span class="b">)</span>;
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="access"># Request Files</h3>
+                    <p class="fw-bold mt-3"># Retrieve upload file</p>
+                    <p>Pada bagian berikut akan dijelaskan metode untuk menerima <em>request</em> file yang diupload oleh user.</p>
+                    <div class="code">
+                        $file <span class="r"> =</span> $request<span class="r">-></span><span class="g">file</span><span class="b">(</span><span class="y">'photo'</span><span class="b">)</span>;
+                    </div>
+                    <p class="fw-bold"># File name &amp; extensions</p>
+                    <p>Untuk selanjutnya dengan metode berikut Anda dapat mendapatkan informasi <strong>nama &amp; extension</strong> file yang diupload.</p>
+                    <div class="code">
+                        <p>
+                            <span class="c"># file name</span><br>
+                            $name <span class="r"> =</span> $request<span class="r">-></span>file<span class="r">-></span><span class="g">getClientOriginalName</span><span class="b">(</span><span class="b">)</span>;
+                        </p>
+                        <p>
+                            <span class="c"># file extension</span><br>
+                            $ext <span class="r"> =</span> $request<span class="r">-></span>file<span class="r">-></span><span class="g">extension</span><span class="b">(</span><span class="b">)</span>;
                         </p>
                     </div>
                 </div>
