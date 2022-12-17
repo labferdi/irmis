@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel</title>
+
+    <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="../index.html">Home</a>
+                    <a class="nav-link" href="#">CSS</a>
+                    <a class="nav-link" href="../javascript.html">Javascipt</a>
+                    <a class="nav-link" href="index.html">Laravel</a>
+                    <a class="nav-link active" href="#">Laravel Project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid mb-5">
+        <div class="row">
+            <nav class="col-sm-2 d-flex flex-column flex-shrink-0 px-3">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="simple.html">Simple</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark active" href="#">Login</a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="col-sm-10">
+                <div class="container-fluid">
+                    <h1>Login Project</h1>
+                    <p>Kali ini akan dijelaskan contoh pembuatan halaman login sederhana dalam laravel, berikut tahapannya</p>
+                    <h3 id="controller">1. Controller</h3>
+                    <h5 class="mt-3 fw-bold" id="controller-create"># Create</h5>
+                    <p>Yang pertama kita akan mencoba membuat 1 controller dengan nama <code>LoginController</code>. Untuk membuatnya kita dapat menggunakan laravel artisan command line dengan menggunakan perintah sebagai berikut</p>
+                    <div class="code">
+                        php artisan make:controller LoginController
+                    </div>
+                    <p>File controller ini akan disimpan di dalam folder <code>app/http/Controllers</code>.</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace </span><span class="g">App\Http\Controllers</span>;</p>
+                        <p><span class="r">use </span>Illuminate\Http\<span class="b">Request</span>;</p>
+                        <p>
+                            <span class="b">class</span> <span class="g">LoginController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
+                            <span class="y">{</span><br>
+                            <span class="c ps-4">//</span><br>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+                    
+                    <h5 class="mt-3 fw-bold" id="controller-function"># Function</h5>
+                    <p>Setelah <code>LoginController</code> terbuat, selanjutnya kita akan membuat 1 <code>function</code> dengan nama <code>index</code> untuk menampilkan sebuah <em>html login form</em>.</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace </span><span class="g">App\Http\Controllers</span>;</p>
+                        <p><span class="r">use </span>Illuminate\Http\<span class="b">Request</span>;</p>
+                        <p>
+                            <span class="b">class</span> <span class="g">LoginController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
+                            <span class="y">{</span><br>
+                            <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">index</span><span class="p">()</span><br>
+                            <span class="ps-4 p">{</span><br>
+                            <span class="ps-5 r">return</span> <span class="g">view</span><span class="b">(</span><span class="y">'login'</span><span class="b">)</span>; <br>
+                            <span class="ps-4 p">}</span><br>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="view">2. View</h3>
+                    <p>Kita akan membuat <em>HTML login form</em> dengan nama <strong>login</strong> sebagaimana yang sudah ditentukan di LoginController.</p>
+                    <div class="code">
+                        <p class="">
+                            <span>&lt;form method="post" action="{{ route('getdata')}}" enctype="multipart/form-data"&gt;</span>
+                        </p>
+                        <p>
+                            <span class="ps-3">&lt;div class="mb-3"&gt;</span><br>
+                            <span class="ps-5">&lt;label for="exampleInputEmail1" class="form-label"&gt;Email address&lt;/label&gt;</span><br>
+                            <span class="ps-5">&lt;input type="text" name="email" class="form-control" id="exampleInputEmail1"&gt;</span><br>
+                            <span class="ps-3">&lt;div&gt;</span>
+                        </p>
+                        <p>
+                            <span class="ps-3">&lt;div class="mb-3"&gt;</span><br>
+                            <span class="ps-5">&lt;label for="exampleInputPassword1" class="form-label"&gt;Password&lt;/label&gt;</span><br>
+                            <span class="ps-5">&lt;input type="password" name="password" class="form-control" id="exampleInputPassword1"&gt;</span><br>
+                            <span class="ps-3">&lt;/div&gt;<br>
+                            <span class="ps-3">&lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;button&gt;
+                        </p>
+                        <p>
+                            <span>&lt;/form&gt;</span>
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="route">3. Route</h3>
+                    <p>
+                        Selanjutnya kita akan menentukan rute URL <em>login</em> agar diarahkan ke <code>function index</code> pada <code>LoginController</code>. <br>
+                        Dan route <em>getdata</em> untuk menerima data dari form login nantinya.
+                    </p>
+                    <p>Anda dapat membuat rute URL tersebut pada file <code>routes/web.php</code></p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p>
+                            <span class="r">use </span>Illuminate\Support\Facades\<span class="b">Route</span>;<br><br>
+                            <span class="c">// Load login controller</span><br>
+                            <span class="r">use </span>App\Http\Controllers\<span class="b">LoginController</span>;
+                        </p>
+                        <p>
+                            <span class="c">// define route</span><br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">get</span><span class="o">(</span><span class="y">'login'</span>, <span class="p">[</span><span class="b">LoginController</span><span class="r">::class</span>, <span class="y">'index'</span><span class="p">]</span><span class="o">)</span>; <br>
+                            <span class="b">Route</span><span class="r">::</span><span class="g">post</span><span class="o">(</span><span class="y">'getdata'</span>, <span class="p">[</span><span class="b">LoginController</span><span class="r">::class</span>, <span class="y">'getData'</span><span class="p">]</span><span class="o">)</span>;
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="route">4. Get Data</h3>
+                    <p>Di <code>LoginController</code>, kita tambahkan <em>function</em> <code>getData</code> untuk menerima data dari <em>html login form</em>.</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace </span><span class="g">App\Http\Controllers</span>;</p>
+                        <p><span class="r">use </span>Illuminate\Http\<span class="b">Request</span>;</p>
+                        <p>
+                            <span class="b">class</span> <span class="g">LoginController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
+                            <span class="y">{</span><br>
+                            <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">index</span><span class="p">()</span><br>
+                            <span class="ps-4 p">{</span><br>
+                            <span class="ps-5 r">return</span> <span class="g">view</span><span class="b">(</span><span class="y">'login'</span><span class="b">)</span>; <br>
+                            <span class="ps-4 p">}</span><br><br>
+                            <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">getData</span><span class="p">(</span> <span class="b">Request</span> $req <span class="p">)</span><br>
+                            <span class="ps-4 p">{</span><br>
+                            
+                            <span class="ps-5 c">// get email request</span><br>
+                            <span class="ps-5">$email <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"email"</span><span class="b">)</span>;<br><br>
+                            <span class="ps-5 c">// get password request</span><br>
+                            <span class="ps-5">$password <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"password"</span><span class="b">)</span>;<br>
+                            <span class="ps-4 p">}</span><br>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="route">5. Validation</h3>
+                    <p>Selanjutkan kita mencoba untuk melakukan validasi data yang dikirim dari <em>HTML form</em>. Beberapa validasi yang akan dicoba adalah sebagai berikut,</p>
+                    <ul>
+                        <li>wajib diisi</li>
+                        <li>Email format</li>
+                        <li>Minimal karakter</li>
+                    </ul>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace </span><span class="g">App\Http\Controllers</span>;</p>
+                        <p><span class="r">use </span>Illuminate\Http\<span class="b">Request</span>;</p>
+                        <p>
+                            <span class="b">class</span> <span class="g">LoginController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
+                            <span class="y">{</span><br>
+                            <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">index</span><span class="p">()</span><br>
+                            <span class="ps-4 p">{</span><br>
+                            <span class="ps-5 r">return</span> <span class="g">view</span><span class="b">(</span><span class="y">'login'</span><span class="b">)</span>; <br>
+                            <span class="ps-4 p">}</span><br><br>
+                            <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">getData</span><span class="p">(</span> <span class="b">Request</span> $req <span class="p">)</span><br>
+                            <span class="ps-4 p">{</span><br>
+                            
+                            <span class="ps-5 c">// s:validation</span><br>
+                            <span class="ps-5">$req<span class="r">-></span><span class="g">validate</span><span class="b">(</span><span class="o">[</span></span><br>
+                            <span class="ps-7"><span class="y">'email'</span> <span class="r">=></span> <span class="y">'required|email'</span>,</span><br>
+                            <span class="ps-7"><span class="y">'password'</span> <span class="r">=></span> <span class="y">'required|min:6'</span>,</span><br>
+                            <span class="ps-5"><span class="o">]</span><span class="b">)</span></span>;<br>
+                            <span class="ps-5 c">// e:validation</span><br><br>
+                            <span class="ps-5 c">// get email request</span><br>
+                            <span class="ps-5">$email <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"email"</span><span class="b">)</span>;<br><br>
+                            <span class="ps-5 c">// get password request</span><br>
+                            <span class="ps-5">$password <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"password"</span><span class="b">)</span>;<br>
+                            <span class="ps-4 p">}</span><br>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
