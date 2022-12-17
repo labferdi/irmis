@@ -133,7 +133,7 @@
 
                     <hr class="my-5">
 
-                    <h3 id="route">4. Get Data</h3>
+                    <h3 id="get-data">4. Get Data</h3>
                     <p>Di <code>LoginController</code>, kita tambahkan <em>function</em> <code>getData</code> untuk menerima data dari <em>html login form</em>.</p>
                     <div class="code">
                         <p><span class="r">&lt;?php</span></p>
@@ -149,10 +149,11 @@
                             <span class="ps-4 r">public</span> <span class="b">function</span> <span class="g">getData</span><span class="p">(</span> <span class="b">Request</span> $req <span class="p">)</span><br>
                             <span class="ps-4 p">{</span><br>
                             
-                            <span class="ps-5 c">// get email request</span><br>
+                            <span class="ps-5 c">// get email request data</span><br>
                             <span class="ps-5">$email <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"email"</span><span class="b">)</span>;<br><br>
-                            <span class="ps-5 c">// get password request</span><br>
-                            <span class="ps-5">$password <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"password"</span><span class="b">)</span>;<br>
+                            <span class="ps-5 c">// get password request data</span><br>
+                            <span class="ps-5">$password <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"password"</span><span class="b">)</span>;<br><br>
+                            <span class="ps-5 r">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'ok'</span><span class="b">)</span>; <br>
                             <span class="ps-4 p">}</span><br>
                             <span class="y">}</span>
                         </p>
@@ -160,12 +161,12 @@
 
                     <hr class="my-5">
 
-                    <h3 id="route">5. Validation</h3>
+                    <h3 id="validation">5. Validation</h3>
                     <p>Selanjutkan kita mencoba untuk melakukan validasi data yang dikirim dari <em>HTML form</em>. Beberapa validasi yang akan dicoba adalah sebagai berikut,</p>
                     <ul>
-                        <li>wajib diisi</li>
+                        <li>Wajib diisi</li>
                         <li>Email format</li>
-                        <li>Minimal karakter</li>
+                        <li>Minimal 8 karakter</li>
                     </ul>
                     <div class="code">
                         <p><span class="r">&lt;?php</span></p>
@@ -184,18 +185,51 @@
                             <span class="ps-5 c">// s:validation</span><br>
                             <span class="ps-5">$req<span class="r">-></span><span class="g">validate</span><span class="b">(</span><span class="o">[</span></span><br>
                             <span class="ps-7"><span class="y">'email'</span> <span class="r">=></span> <span class="y">'required|email'</span>,</span><br>
-                            <span class="ps-7"><span class="y">'password'</span> <span class="r">=></span> <span class="y">'required|min:6'</span>,</span><br>
+                            <span class="ps-7"><span class="y">'password'</span> <span class="r">=></span> <span class="y">'required|min:8'</span>,</span><br>
                             <span class="ps-5"><span class="o">]</span><span class="b">)</span></span>;<br>
                             <span class="ps-5 c">// e:validation</span><br><br>
-                            <span class="ps-5 c">// get email request</span><br>
+                            <span class="ps-5 c">// get email request data</span><br>
                             <span class="ps-5">$email <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"email"</span><span class="b">)</span>;<br><br>
-                            <span class="ps-5 c">// get password request</span><br>
-                            <span class="ps-5">$password <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"password"</span><span class="b">)</span>;<br>
+                            <span class="ps-5 c">// get password request data</span><br>
+                            <span class="ps-5">$password <span class="r">=</span> $req</span><span class="r">-></span><span class="g">input</span><span class="b">(</span><span class="y">"password"</span><span class="b">)</span>;<br><br>
+                            <span class="ps-5 r">return</span> <span class="g">response</span><span class="b">(</span><span class="y">'ok'</span><span class="b">)</span>; <br>
                             <span class="ps-4 p">}</span><br>
                             <span class="y">}</span>
                         </p>
                     </div>
 
+                    <hr class="my-5">
+
+                    <h3 id="error-message">6. Error Message</h3>
+                    <p>Untuk menampilkan pesan error dari validasi yang sudah dilakukan sebelumnya, dapat menambahkan beberapa <em>code</em> di <strong>login</strong> view yang sudah dibuat sebelumnya </p>
+                    <div class="code">
+                        <p class="">
+                            <span>&lt;form method="post" action="{{ route('getdata')}}" enctype="multipart/form-data"&gt;</span>
+                        </p>
+                        <p>
+                            <span class="ps-3">&lt;div class="mb-3"&gt;</span><br>
+                            <span class="ps-5">&lt;label for="exampleInputEmail1" class="form-label"&gt;Email address&lt;/label&gt;</span><br>
+                            <span class="ps-5">&lt;input type="text" name="email" class="form-control" id="exampleInputEmail1"&gt;</span><br>
+                            <span class="ps-5 r">@error('email')</span><br>
+                            <span class="ps-7 r">&lt;div class="text-danger"&gt;{{ $message }}&lt;/div&gt;</span><br>
+                            <span class="ps-5 r">@enderror</span><br>
+                            <span class="ps-3">&lt;div&gt;</span>
+                        </p>
+                        <p>
+                            <span class="ps-3">&lt;div class="mb-3"&gt;</span><br>
+                            <span class="ps-5">&lt;label for="exampleInputPassword1" class="form-label"&gt;Password&lt;/label&gt;</span><br>
+                            <span class="ps-5">&lt;input type="password" name="password" class="form-control" id="exampleInputPassword1"&gt;</span><br>
+                            <span class="ps-3">&lt;/div&gt;<br>
+                            <span class="ps-5 r">@error('password')</span><br>
+                            <span class="ps-7 r">&lt;div class="text-danger"&gt;{{ $message }}&lt;/div&gt;</span><br>
+                            <span class="ps-5 r">@enderror</span><br>
+                            <span class="ps-3">&lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;button&gt;
+                        </p>
+                        <p>
+                            <span>&lt;/form&gt;</span>
+                        </p>
+                    </div>
+                    <img src="images/error-message.png" alt="error-message" class="img-thumbnail">
                 </div>
             </div>
         </div>
