@@ -34,6 +34,7 @@ class UserController extends Controller
 
     public function loginCheck(Request $request)
     {
+
         $email = $request->input('email');
         $password = $request->input('password');
         

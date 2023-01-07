@@ -6,9 +6,9 @@ Route::get('/hello', function(){
     return response('hello world');
 });
 
-Route::get('/login', function(){
-    return response('login pages');
-});
+// Route::get('/login', function(){
+//     return response('login pages');
+// });
 
 
 
@@ -50,4 +50,12 @@ Route::get('admin/{id?}', [UserController::class, 'admin'])->name('user-admin');
 
 Route::get('login', [UserController::class, 'login'])->name('user-login');
 Route::post('login', [UserController::class, 'loginCheck'])->name('user-login-check');
+
+
+use App\Http\Controllers\LoginController;
+Route::get('loginbaru', [LoginController::class, 'index']);
+Route::post('loginbaru', [LoginController::class, 'get_data'])->name('getdata');
+
+use App\Http\Controllers\SimpleController;
+Route::get('simple', [SimpleController::class, 'index']);
 
