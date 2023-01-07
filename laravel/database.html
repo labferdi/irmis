@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel</title>
+
+    <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="../index.html">Home</a>
+                    <a class="nav-link" href="#">CSS</a>
+                    <a class="nav-link" href="../javascript.html">Javascipt</a>
+                    <a class="nav-link" href="index.html">Laravel</a>
+                    <a class="nav-link active" href="#">Laravel Project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid mb-5">
+        <div class="row">
+            <nav class="col-sm-2 d-flex flex-column flex-shrink-0 px-3">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="simple.html">Simple</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark active" href="#">Database</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-sm-10">
+                <div class="container-fluid">
+                    <h1>Database Project</h1>
+                    <p>Salah satu fitur yang tersedia pada laravel untuk berinteraksi dengan database yaitu <code>Eloquent ORM</code>. Dengan fitur ini, setiap <em>table</em> yang ada di database direpresentasikan ke dalam sebuah "Model", sehingga mempermudah dalam melakukan <em>query</em> dan manipulasi data dan juga meminimalisir kesalahan dalam pembuatan Query Statement, karena Eloquent ORM ini sudah menggunakan <em>Object Oritented Programming (OOP)</em>.</p>
+                    <p>Kali ini akan dijelaskan contoh aplikasi sederhana laravel dengan interaksi database, berikut tahapannya</p>
+                    <h3 id="controller">1. Create Database</h3>
+                    <p>
+                        Tahap pertama yang perlu disiapkan adalah membuat database baru dengan nama (contoh) <strong>irmis</strong>.<br>
+                        Berikut <em>command</em> untuk membuat database baru
+                    </p>
+                    <div class="code">
+                        <span class="r">CREATE DATABASE</span> <span class="g">irmis</span>;
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="connection">2. Connection</h3>
+                    <p>Pada laravel, untuk pengaturan koneksi database Anda dapat mengaturnya pada <code>.env</code> file.</p>
+                    <div class="code">
+                        <span class="r">DB_CONNECTION</span>=mysql<br>
+                        <span class="r">DB_HOST</span>=127.0.0.1<br>
+                        <span class="r">DB_PORT</span>=3306<br>
+                        <span class="r">DB_DATABASE</span>=laravel<br>
+                        <span class="r">DB_USERNAME</span>=root<br>
+                        <span class="r">DB_PASSWORD</span>=password
+                    </div>
+                    <p>Konfigurasi ini merepresentasikan konfigurasi database yang terdapat di <code>config/database.php</code></p>
+
+                    <hr class="my-5">
+
+                    <h3 id="model">3. Model</h3>
+                    <p>Berikut command untuk membuat model baru</p>
+                    <div class="code">
+                        <span>php artisan make:model News</span>
+                    </div>
+                    <p>Setiap file <strong>Model</strong> akan disimpan di dalam folder <code>app/Models</code>.</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Eloquent\Factories\<span class="b">HasFactory</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Eloquent\<span class="b">Model</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">News</span> <span class="r">extends</span> <span class="g">Model</span><br>
+                            <span class="y">{</span><br>
+                            <span class="r ps-4">use</span> <span class="b">HasFactory</span>;<br>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="migration">4. Migration</h3>
+                    <p>
+                        Migration adalah fitur yang ada pada laravel untuk mempermudah dalam membuat suatu skema pengelolaan tabel di database. Misalnya membuat tabel baru, menambahkan kolom, mengubah kolom, menghapus kolom dan bahkan menghapus tabel.
+                    </p>
+                    <p>Setiap file <strong>Migration</strong> akan disimpan di dalam folder <code>app/database/migrations</code>.</p>
+                    <p>Berikut command untuk membuat tabel baru "news"</p>
+                    <div class="code">
+                        <span>php artisan make:migration create_news_table --create=news</span>
+                    </div>
+                    <p>Hasil, <code>app/database/migrations/2022_12_31_071011_create_news_table.php</code></p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Migrations\<span class="b">Migration</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Schema\<span class="b">Blueprint</span>;<br>
+                            <span class="r">use</span> Illuminate\Support\Facades\<span class="b">Schema</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">CreateNewsTable</span> <span class="r">extends</span> <span class="g">Migration</span><br>
+                            <span class="y">{</span><br>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">up</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">create</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">id</span><span class="p">()</span>;<br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">string</span><span class="p">(</span><span class="y">'title'</span>, <span class="p">100</span><span class="p">)</span>;<br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">timestamp</span><span class="p">()</span>;<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">down</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">dropIfExists</span><span class="b">(</span><span class="y">'news'</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+
+                    <p>Berikut command untuk mengubah tabel "news"</p>
+                    <div class="code">
+                        <span>php artisan make:migration add_column_user --table=news</span>
+                    </div>
+
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Migrations\<span class="b">Migration</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Schema\<span class="b">Blueprint</span>;<br>
+                            <span class="r">use</span> Illuminate\Support\Facades\<span class="b">Schema</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">AddColumnUser</span> <span class="r">extends</span> <span class="g">Migration</span><br>
+                            <span class="y">{</span><br>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">up</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="ps-7">$table</span><span class="r">-></span><span class="g">string</span><span class="p">(</span><span class="y">'user'</span>, <span class="p">100</span><span class="p">)</span>;<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">down</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="c ps-7">//<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
