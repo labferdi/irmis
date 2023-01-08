@@ -103,7 +103,9 @@
                     <p>
                         Migration adalah fitur yang ada pada laravel untuk mempermudah dalam membuat suatu skema pengelolaan tabel di database. Misalnya membuat tabel baru, menambahkan kolom, mengubah kolom, menghapus kolom dan bahkan menghapus tabel.
                     </p>
-                    <p>Setiap file <strong>Migration</strong> akan disimpan di dalam folder <code>app/database/migrations</code>.</p>
+                    <p>Setiap file <strong>Migration</strong> akan disimpan di dalam folder <code>app/database/migrations</code>.</p> <br>
+
+                    <h5>A. Create Table</h5>
                     <p>Berikut command untuk membuat tabel baru "news"</p>
                     <div class="code">
                         <span>php artisan make:migration create_news_table --create=news</span>
@@ -126,6 +128,7 @@
                                 <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">create</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
                                     <span class="ps-7">$table</span><span class="r">-></span><span class="g">id</span><span class="p">()</span>;<br>
                                     <span class="ps-7">$table</span><span class="r">-></span><span class="g">string</span><span class="p">(</span><span class="y">'title'</span>, <span class="p">100</span><span class="p">)</span>;<br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">text</span><span class="p">(</span><span class="y">'description'</span><span class="p">)</span>;<br>
                                     <span class="ps-7">$table</span><span class="r">-></span><span class="g">timestamp</span><span class="p">()</span>;<br>
                                 <span class="o ps-5">}</span><span class="b">)</span>;<br>
                                 <span class="p ps-4">}</span><br>
@@ -139,8 +142,11 @@
                             <span class="y">}</span>
                         </p>
                     </div>
+                    <br>
 
-                    <p>Berikut command untuk mengubah tabel "news"</p>
+                    <h5>B. Add column</h5>
+
+                    <p>Berikut command untuk menambahkan kolom baru di tabel "news"</p>
                     <div class="code">
                         <span>php artisan make:migration add_column_user --table=news</span>
                     </div>
@@ -174,6 +180,100 @@
                             </p>
                             <span class="y">}</span>
                         </p>
+                    </div>
+                    <br>
+
+                    <h5>C. Update column</h5>
+                    <p>Sebelum melakukan update kolom pada table di database, kita perlu menginstall <em>plugins</em> <code>doctrine/dbal</code>. Ketik command berikut ini</p>
+                    <div class="code">
+                        <span>composer require doctrine/dbal</span>
+                    </div>
+                    <p>Setelah selesai, dilanjutkan dengan membuat migration baru untuk mengubah column "user" & "description" pada tabel "news"</p>
+                    <div class="code">
+                        <span>php artisan make:migration update_column_user_description --table=news</span>
+                    </div>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Migrations\<span class="b">Migration</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Schema\<span class="b">Blueprint</span>;<br>
+                            <span class="r">use</span> Illuminate\Support\Facades\<span class="b">Schema</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">UpdateColoumnUserDescription</span> <span class="r">extends</span> <span class="g">Migration</span><br>
+                            <span class="y">{</span><br>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">up</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="ps-7"></span><br>
+                                <span class="ps-7 c">// change column length</span><br>
+                                <span class="ps-7">$table</span><span class="r">-></span><span class="g">string</span><span class="p">(</span><span class="y">'user'</span>, <span class="p">80</span><span class="p">)</span><span class="r">-></span><span class="g">change</span><span class="p">()</span>;<br>
+                                <span class="ps-7"></span><br>
+                                <span class="ps-7 c">// change type</span><br>
+                                <span class="ps-7">$table</span><span class="r">-></span><span class="g">longText</span><span class="p">(</span><span class="y">'description'</span><span class="p">)</span></span><span class="r">-></span><span class="g">change</span><span class="p">()</span>;<br>
+                                <span class="ps-7"></span><br>
+                                <span class="ps-7 c">// rename column</span><br>
+                                <span class="ps-7">$table</span><span class="r">-></span><span class="g">renameColumn</span><span class="p">(</span><span class="y">'description'</span>, <span class="y">'content'</span><span class="p">)</span>;<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">down</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="c ps-7">//<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+                    <br>
+                    <h5>D. Delete column</h5>
+                    <p>Membuat file migration untuk hapus column "user" pada tabel "news"</p>
+                    <div class="code">
+                        <span>php artisan make:migration drop_column_user --table=news</span>
+                    </div>
+
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Migrations\<span class="b">Migration</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Schema\<span class="b">Blueprint</span>;<br>
+                            <span class="r">use</span> Illuminate\Support\Facades\<span class="b">Schema</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">DropColoumnUser</span> <span class="r">extends</span> <span class="g">Migration</span><br>
+                            <span class="y">{</span><br>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">up</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="ps-7">$table</span><span class="r">-></span><span class="g">dropColumn</span><span class="p">(</span><span class="y">'user'</span>)</span>;<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">down</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="c ps-7">//<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="migrate">5. Migrate</h3>
+                    <p>Perintah untuk menjalankan file-file migrations yang telah dibuat sebelumnya</p>
+                    <div class="code">
+                        <span>php artisan migrate</span>
                     </div>
                 </div>
             </div>
