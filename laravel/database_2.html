@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel</title>
+
+    <link type="text/css" rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="../index.html">Home</a>
+                    <a class="nav-link" href="#">CSS</a>
+                    <a class="nav-link" href="../javascript.html">Javascipt</a>
+                    <a class="nav-link" href="index.html">Laravel</a>
+                    <a class="nav-link active" href="#">Laravel Project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid mb-5">
+        <div class="row">
+            <nav class="col-sm-2 d-flex flex-column flex-shrink-0 px-3">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="simple.html">Simple</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark" href="database.html">Database</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-dark active" href="#">Database 2</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="col-sm-10">
+                <div class="container-fluid">
+                    <h1>Database Relationships Project</h1>
+                    <h3 id="one-to-many">1. One To Many</h3>
+                    <p>Ilustrasi database schema</p>
+                    <img src="images/relation_user_news.png" alt="one-to-many" class="img-thumbnail">
+                    <p class="mt-3">Tambahkan kolom baru <code>user_id</code> di tabel "news", dengan membuat migration baru</p>
+                    <div class="code">
+                        php artisan make:migration fk_user_id_news --create=news
+                    </div>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Migrations\<span class="b">Migration</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Schema\<span class="b">Blueprint</span>;<br>
+                            <span class="r">use</span> Illuminate\Support\Facades\<span class="b">Schema</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">FkUserIdNews</span> <span class="r">extends</span> <span class="g">Migration</span><br>
+                            <span class="y">{</span><br>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">up</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="ps-7">$table</span><span class="r">-></span><span class="g">foreignId</span><span class="p">(</span><span class="y">'user_id'</span><span class="p">)</span><br>
+                                <span class="ps-7"><span class="ps-5 r">-></span><span class="g">nullable</span><span class="p">(</span><span class="p">)</span><br>
+                                <span class="ps-7"><span class="ps-5 r">-></span><span class="g">constrained</span><span class="p">(</span><span class="p">)</span><br>
+                                <span class="ps-7"><span class="ps-5 r">-></span><span class="g">on</span><span class="p">(</span><span class="y">'user'</span><span class="p">)</span><br>
+                                <span class="ps-7"><span class="ps-5 r">-></span><span class="g">onUpdate</span><span class="p">(</span><span class="y">'cascade'</span><span class="p">)</span><br>
+                                <span class="ps-7"><span class="ps-5 r">-></span><span class="g">onDelete</span><span class="p">(</span><span class="y">'cascade'</span><span class="p">)</span>;<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">down</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">table</span><span class="b">(</span><span class="y">'news'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                <span class="c ps-7">//<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <h3 id="migrate">5. Migrate</h3>
+                    <p>Perintah untuk menjalankan file-file migrations yang telah dibuat sebelumnya</p>
+                    <div class="code">
+                        <span>php artisan migrate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
