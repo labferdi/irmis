@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnUser extends Migration
+class UpdateColumnUserDescription extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,14 @@ class AddColumnUser extends Migration
     public function up()
     {
         Schema::table('news', function (Blueprint $table) {
-            //
-            $table->string('name', 100);
+            // change column length
+            $table->string('user', 80)->change();
+
+            // change type
+            $table->longText('description')->change();
+
+            // rename column
+            $table->renameColumn('description', 'content');
         });
     }
 
