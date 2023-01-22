@@ -136,6 +136,43 @@
                         </p>
                     </div>
 
+                    <p>Jika ingin sebaliknya, ingin mengambil informasi user dari <strong>NewsModel</strong>, tambahkan <em>function</em> <code>user</code> seperti berikut</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> App\Model\<span class="b">User</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">News</span> <span class="r">extends</span> <span class="g">Model</span><br>
+                            <span class="y">{</span><br>
+                            <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">user</span><span class="p">()</span><br>
+                            <span class="p ps-4">{</span><br>
+                            <span class="r ps-5">return</span> <span class="o">$this</span><span class="r">-></span><span class="g">hasMany</span><span class="p">(</span> <span class="b">News</span><span class="r">::class</span> <span class="p">)</span>;<br>
+                            <span class="p ps-4">}</span><br>
+                            <span class="y">}</span><br>
+                        </p>
+                    </div>
+                    <p>Contoh penggunaan</p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Http\Controllers</span>;</p>
+                        <p>
+                            <span class="r">use</span> App\Model\<span class="b">User</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">NewsController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
+                            <span class="y">{</span><br>
+                            <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">index</span><span class="p">()</span><br>
+                            <span class="p ps-4">{</span><br>
+                            <span class="ps-5">$news <span class="r">=</span> <span class="b">News</span><span class="r">::</span><span class="g">find</span><span class="p">(</span><span class="b">5</span><span class="p">)</span>;<br>
+                            <span class="ps-5"><span class="b">echo</span> $news<span class="r">-></span>title</span><span class="r">.</span><span class="y">'&ltbr&gt'</span>;<br>
+                            <span class="ps-5"><span class="b">echo</span> $news<span class="r">-></span>user</span><span class="r">-></span>name</span><span class="r">.</span><span class="y">'&ltbr&gt'</span>;<br>
+                            <span class="p ps-4">}</span><br>
+                            <span class="y">}</span><br>
+                        </p>
+                    </div>
+
                     <hr class="my-5">
 
                     <h3 id="one-to-many">2. Many To Many</h3>
