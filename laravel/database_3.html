@@ -57,7 +57,74 @@
                     <h1>Database Relationships Project</h1>
                     <h3 id="many-to-many">Many To Many</h3>
                     <p>Ilustrasi database schema</p>
-                    <img src="images/relation_user_role.png" alt="many-to-many" class="img-thumbnail">
+                    <img src="images/relation_user_role.png" alt="many-to-many" class="img-thumbnail mb-5">
+
+                    <h5>Tabel Role</h5>
+                    <p>1. Membuat model role</p>
+                    <div class="code">
+                        <span>php artisan make:model Role</span>
+                    </div>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Eloquent\Factories\<span class="b">HasFactory</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Eloquent\<span class="b">Model</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">Role</span> <span class="r">extends</span> <span class="g">Model</span><br>
+                            <span class="y">{</span><br>
+                            <span class="r ps-4">use</span> <span class="b">HasFactory</span>;<br>
+                            <span class="y">}</span>
+                        </p>
+                    </div><br>
+                    <p>2. Membuat migration file untuk membuat tabel <strong>role</strong> dan tabel <strong>role user</strong></p>
+                    <div class="code">
+                        <span>php artisan make:migration create_roles_table --create=roles</span>
+                    </div>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> Illuminate\Database\Migrations\<span class="b">Migration</span>;<br>
+                            <span class="r">use</span> Illuminate\Database\Schema\<span class="b">Blueprint</span>;<br>
+                            <span class="r">use</span> Illuminate\Support\Facades\<span class="b">Schema</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">CreateRolesTable</span> <span class="r">extends</span> <span class="g">Migration</span><br>
+                            <span class="y">{</span><br>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">up</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">create</span><span class="b">(</span><span class="y">'roles'</span>, <span class="b">function</span> <span class="y">(</span><span class="b">Blueprint</span> $table<span class="y">)</span> <span class="o">{</span><br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">id</span><span class="p">()</span>;<br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">string</span><span class="p">(</span><span class="y">'name'</span><span class="p">)</span>;<br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">boolean</span><span class="p">(</span><span class="y">'is_active'</span><span class="p">)</span><span class="r">-></span><span class="g">default</span><span class="p">(</span><span class="b">false</span><span class="p">)</span>;<br>
+                                    <span class="ps-7">$table</span><span class="r">-></span><span class="g">timestamp</span><span class="p">()</span>;<br>
+                                <span class="o ps-5">}</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <p>
+                                <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">down</span><span class="p">()</span><br>
+                                <span class="p ps-4">{</span><br>
+                                <span class="b ps-5">Schema</span><span class="r">::</span><span class="g">dropIfExists</span><span class="b">(</span><span class="y">'roles'</span><span class="b">)</span>;<br>
+                                <span class="p ps-4">}</span><br>
+                            </p>
+                            <span class="y">}</span>
+                        </p>
+                    </div>
+                    
+                    <br class="my-3">
+
+                    <h5>Tabel Role User</h5>
+                    <p>1. Membuat model role user</p>
+                    <div class="code">
+                        <span>php artisan make:model RoleUser</span>
+                    </div>
+                    <p>2. Membuat migration file untuk membuat tabel <strong>role</strong> dan tabel <strong>role user</strong></p>
+                    <div class="code">
+                        <span>php artisan make:migration create_roles_user_table --create=role_users</span>
+                    </div>
                 </div>
             </div>
         </div>
