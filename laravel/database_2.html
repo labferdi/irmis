@@ -94,14 +94,56 @@
                             <span class="y">}</span>
                         </p>
                     </div>
+                    <p>Kemudian tambahkan <em>function</em> <code>news</code> baru di <code>UserModel</code> untuk menghubungkan dengan <code>NewsModel</code><br>
+                        <em>Function</em> ini sebagai alias untuk mengambil data dari <strong>UserModel</strong>
+                    </p>
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
+                        <p>
+                            <span class="r">use</span> App\Model\<span class="b">News</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">User</span> <span class="r">extends</span> <span class="g">Authenticatable</span><br>
+                            <span class="y">{</span><br>
+                            <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">news</span><span class="p">()</span><br>
+                            <span class="p ps-4">{</span><br>
+                            <span class="r ps-5">return</span> <span class="o">$this</span><span class="r">-></span><span class="g">hasMany</span><span class="p">(</span> <span class="b">News</span><span class="r">::class</span> <span class="p">)</span>;<br>
+                            <span class="p ps-4">}</span><br>
+                            <span class="y">}</span><br>
+                        </p>
+                    </div>
+                    <p>Contoh penggunaan,</p>
+
+                    <div class="code">
+                        <p><span class="r">&lt;?php</span></p>
+                        <p><span class="r">namespace</span> <span class="g">App\Http\Controllers</span>;</p>
+                        <p>
+                            <span class="r">use</span> App\Model\<span class="b">User</span>;
+                        </p>
+                        <p>
+                            <span class="b">class</span> <span class="g">NewsController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
+                            <span class="y">{</span><br>
+                            <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">index</span><span class="p">()</span><br>
+                            <span class="p ps-4">{</span><br>
+                            <span class="ps-5">$user <span class="r">=</span> <span class="b">User</span><span class="r">::</span><span class="g">find</span><span class="p">(</span><span class="b">2</span><span class="p">)</span>;<br>
+                            <span class="ps-5">$user_news <span class="r">=</span> $user<span class="r">-></span><span class="g">news</span><span class="b">()</span><span class="r">-></span><span class="g">get</span><span class="b">()</span>;<br> <br>
+                            <span class="ps-5"><span class="r">foreach</span><span class="b">(</span> $user_news <span class="r">as</span> $news <span class="b">){</span><br>
+                            <span class="ps-7"><span class="b">echo</span> $user<span class="r">-></span>name</span><span class="r">.</span><span class="y">':'</span><span class="r">.</span>$news<span class="r">-></span>title<span class="r">.</span><span class="y">'&ltbr&gt'</span>;<br>
+                            <span class="b ps-5">}</span><br>
+                            <span class="p ps-4">}</span><br>
+                            <span class="y">}</span><br>
+                        </p>
+                    </div>
 
                     <hr class="my-5">
 
-                    <h3 id="migrate">5. Migrate</h3>
-                    <p>Perintah untuk menjalankan file-file migrations yang telah dibuat sebelumnya</p>
-                    <div class="code">
-                        <span>php artisan migrate</span>
-                    </div>
+                    <h3 id="one-to-many">2. Many To Many</h3>
+                    <p>Ilustrasi database schema</p>
+                    <img src="images/relation_user_role.png" alt="many-to-many" class="img-thumbnail">
+
+                    <hr class="my-5">
+                    
                 </div>
             </div>
         </div>
