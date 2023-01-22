@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class UserController extends Controller
 {
@@ -21,10 +22,14 @@ class UserController extends Controller
 
     public function admin($name = 'administrator'){
 
-        $data = [
-            'name' => $name
-        ];
-        return view('user.admin', $data);
+        if ( Session::has('inisesi') ) {
+
+            $data = [
+                'name' => $name
+            ];
+            return view('user.admin', $data);
+        }
+        abort('401');
     }
 
     public function login()
@@ -38,12 +43,26 @@ class UserController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
         
+        $request->validate(
+            [
+                'email' => 'required|email',
+                'password' => 'required|min:8',
+            ],
+            [
+                'email.required'=> 'Email harus diisi',
+                'email.email'=> 'Email tidak valid',
+                'password.required'=> 'Password harus diisi',
+                'password.min'=> 'Password minimal 8 huruf',
+            ]
+        );
 
         $res = [
             'email' => $email,
             'password' => $password,
             'file' => null,
         ];
+
+        $request->session()->put('inisesi', $res['email'] );
 
         if ($request->hasFile('file')) {
             $res['file'] = [

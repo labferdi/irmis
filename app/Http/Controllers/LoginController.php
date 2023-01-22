@@ -27,7 +27,7 @@ class LoginController extends Controller
             ]
         );
 
-        $req->session()->put('inisesi', $req->input('email') );
+        // $req->session()->put('inisesi', $req->input('email') );
 
         $file = $req->file('nama_file'); // binary file / file fisik
         $data = [

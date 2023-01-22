@@ -1,16 +1,22 @@
 @extends('layout')
 
 @section('content')
-<form class="form" method="post" enctype="multipart/form-data">
+<form class="form" method="post" action="simpan_news" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="text" class="form-control" id="email" name="email">
         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        @error('email')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" name="password">
+        @error('password')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
     </div>
     <div class="mb-3">
         <label for="file" class="form-label">Default file input example</label>

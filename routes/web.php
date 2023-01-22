@@ -25,7 +25,7 @@ Route::get('/hello', function(){
 */
 
 /*  Welcome Controller */
-use App\Http\Controllers\WelcomeController;
+// use App\Http\Controllers\WelcomeController;
 
 Route::get('/welcome', [WelcomeController::class, 'index'])->name('welcome-index');
 Route::get('/welcome/view', [WelcomeController::class, 'view'])->name('welcome-view');
@@ -52,10 +52,14 @@ Route::get('login', [UserController::class, 'login'])->name('user-login');
 Route::post('login', [UserController::class, 'loginCheck'])->name('user-login-check');
 
 
-use App\Http\Controllers\LoginController;
-Route::get('loginbaru', [LoginController::class, 'index']);
-Route::post('loginbaru', [LoginController::class, 'get_data'])->name('getdata');
+// use App\Http\Controllers\LoginController;
+// Route::get('loginbaru', [LoginController::class, 'index']);
+// Route::post('loginbaru', [LoginController::class, 'get_data'])->name('getdata');
 
 use App\Http\Controllers\SimpleController;
 Route::get('simple', [SimpleController::class, 'index']);
 
+
+use App\Http\Controllers\NewsController;
+Route::get('news', [NewsController::class, 'index']);
+Route::post('simpan_news', [NewsController::class, 'store']);
