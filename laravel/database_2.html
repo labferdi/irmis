@@ -80,7 +80,7 @@
                                 <span class="ps-7">$table</span><span class="r">-></span><span class="g">foreignId</span><span class="p">(</span><span class="y">'user_id'</span><span class="p">)</span><br>
                                 <span class="ps-7"><span class="ps-5 r">-></span><span class="g">nullable</span><span class="p">(</span><span class="p">)</span><br>
                                 <span class="ps-7"><span class="ps-5 r">-></span><span class="g">constrained</span><span class="p">(</span><span class="p">)</span><br>
-                                <span class="ps-7"><span class="ps-5 r">-></span><span class="g">on</span><span class="p">(</span><span class="y">'user'</span><span class="p">)</span><br>
+                                <span class="ps-7"><span class="ps-5 r">-></span><span class="g">on</span><span class="p">(</span><span class="y">'users'</span><span class="p">)</span><br>
                                 <span class="ps-7"><span class="ps-5 r">-></span><span class="g">onUpdate</span><span class="p">(</span><span class="y">'cascade'</span><span class="p">)</span><br>
                                 <span class="ps-7"><span class="ps-5 r">-></span><span class="g">onDelete</span><span class="p">(</span><span class="y">'cascade'</span><span class="p">)</span>;<br>
                                 <span class="o ps-5">}</span><span class="b">)</span>;<br>
@@ -104,7 +104,7 @@
                         <p><span class="r">&lt;?php</span></p>
                         <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
                         <p>
-                            <span class="r">use</span> App\Model\<span class="b">News</span>;
+                            <span class="r">use</span> App\Models\<span class="b">News</span>;
                         </p>
                         <p>
                             <span class="b">class</span> <span class="g">User</span> <span class="r">extends</span> <span class="g">Authenticatable</span><br>
@@ -122,7 +122,7 @@
                         <p><span class="r">&lt;?php</span></p>
                         <p><span class="r">namespace</span> <span class="g">App\Http\Controllers</span>;</p>
                         <p>
-                            <span class="r">use</span> App\Model\<span class="b">User</span>;
+                            <span class="r">use</span> App\Models\<span class="b">User</span>;
                         </p>
                         <p>
                             <span class="b">class</span> <span class="g">NewsController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
@@ -144,14 +144,14 @@
                         <p><span class="r">&lt;?php</span></p>
                         <p><span class="r">namespace</span> <span class="g">App\Models</span>;</p>
                         <p>
-                            <span class="r">use</span> App\Model\<span class="b">User</span>;
+                            <span class="r">use</span> App\Models\<span class="b">User</span>;
                         </p>
                         <p>
                             <span class="b">class</span> <span class="g">News</span> <span class="r">extends</span> <span class="g">Model</span><br>
                             <span class="y">{</span><br>
-                            <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">user</span><span class="p">()</span><br>
+                            <span class="r ps-4">public</span> <span class="b">function</span> <span class="g">admin</span><span class="p">()</span><br>
                             <span class="p ps-4">{</span><br>
-                            <span class="r ps-5">return</span> <span class="o">$this</span><span class="r">-></span><span class="g">hasMany</span><span class="p">(</span> <span class="b">News</span><span class="r">::class</span> <span class="p">)</span>;<br>
+                            <span class="r ps-5">return</span> <span class="o">$this</span><span class="r">-></span><span class="g">belongsTo</span><span class="p">(</span> <span class="b">User</span><span class="r">::class</span> <span class="p">)</span>;<br>
                             <span class="p ps-4">}</span><br>
                             <span class="y">}</span><br>
                         </p>
@@ -161,7 +161,7 @@
                         <p><span class="r">&lt;?php</span></p>
                         <p><span class="r">namespace</span> <span class="g">App\Http\Controllers</span>;</p>
                         <p>
-                            <span class="r">use</span> App\Model\<span class="b">User</span>;
+                            <span class="r">use</span> App\Models\<span class="b">News</span>;
                         </p>
                         <p>
                             <span class="b">class</span> <span class="g">NewsController</span> <span class="r">extends</span> <span class="g">Controller</span><br>
