@@ -11,5 +11,9 @@ Route::prefix('cms')->group(function () {
     Route::get('/users', function () {
         return view('template');
     });
+    
+    Route::get('/blank', function () {
+        return view('pages/blank');
+    });
 
 });

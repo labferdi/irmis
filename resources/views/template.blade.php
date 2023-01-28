@@ -19,8 +19,10 @@
 
         @include('includes/sidebar')
 
+        @yield('content')
+
     </div>
-    <!-- e:wrapper -->
+    <!-- /.wrapper -->
 
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
