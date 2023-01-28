@@ -39,8 +39,23 @@
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Logout</a>
+                <li class="nav-item dropdown user-menu">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="d-inline">User Admin</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+                        <li class="user-header bg-primary">
+                            <img src="{{ asset('assets/images/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
+                            <p>
+                                Alexander Pierce - Web Developer
+                                <small>Member since Nov. 2012</small>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <a href="#" class="btn btn-default btn-sm btn-flat">Profile</a>
+                            <a href="#" class="btn btn-default btn-sm btn-flat float-right">Sign out</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
