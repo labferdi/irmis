@@ -48,3 +48,17 @@
         </div>
         <!-- /.content wrapper -->
 @endsection('content')
+
+
+@section('custom_style')
+<style>
+        abc { text-align: center; }
+    </style>
+
+@endsection('custom_style')
+
+@section('custom_script')
+<script>
+        console.log('a');
+    </script>
+@endsection('custom_script')

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> -->
+    @yield('custom_style')
+        
 </head>
 <body class="sidebar-mini layout-fixed">
 
@@ -28,5 +30,6 @@
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/adminlte.js') }}"></script>
 
+    @yield('custom_script')
 </body>
 </html>
