@@ -24,9 +24,9 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                         <!-- <li class="nav-header">Menu</li> -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('cms-index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p> Dashboard </p>
+                                <p> Halaman Utama </p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -50,7 +50,7 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Photo</p>
+                                        <p>Foto</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -64,7 +64,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-clock"></i>
-                                <p> Schedules <i class="right fas fa-angle-left"></i> </p>
+                                <p> Jadwal <i class="right fas fa-angle-left"></i> </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
@@ -82,14 +82,14 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('cms-user-list') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
-                                <p> User List </p>
+                                <p> Pengguna </p>
                             </a>
                         </li>
                         <li class="nav-header">CONFIG</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p> Website </p>
                             </a>
