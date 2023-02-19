@@ -1,19 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\cms\UserController;
 
 Route::get('/', function(){
     return view('welcome');
-});
+});;
 
-Route::prefix('cms')->group(function () {
+Route::name('cms-')->prefix('cms')->group(function () {
     
-    Route::get('/users', function () {
-        return view('template');
-    });
-    
-    Route::get('/blank', function () {
+    Route::get('/', function () {
         return view('pages/blank');
-    });
+    })->name('index');
+
+
+    # user list
+    Route::get('/user', [ UserController::class, 'index' ] )->name('user-list');
+    Route::get('/user/create', [ UserController::class, 'create' ] )->name('user-create');
+    Route::post('/user/create', [ UserController::class, 'store' ] )->name('user-save');
+
 
 });
