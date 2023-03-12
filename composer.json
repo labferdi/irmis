@@ -8,6 +8,8 @@
         "php": "^7.3|^8.0",
         "doctrine/dbal": "^3.5",
         "fruitcake/laravel-cors": "^2.0",
+        "google/apiclient": "^2.13",
+        "google/photos-library": "^1.7",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
@@ -34,6 +36,7 @@
         }
     },
     "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
@@ -51,7 +54,10 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        }
+        },
+        "google/apiclient-services": [
+            "YouTube"
+        ]
     },
     "config": {
         "optimize-autoloader": true,

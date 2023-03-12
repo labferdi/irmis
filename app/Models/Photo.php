@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\VideoAlbum;
+use App\Models\PhotoAlbum;
 
-class Video extends Model
+class Photo extends Model
 {
     use HasFactory;
 
     public function album()
     {
-        return $this->belongsTo(VideoAlbum::class);
+        return $this->belongsTo(PhotoAlbum::class);
     }
 }
