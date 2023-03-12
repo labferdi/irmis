@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-use App\Models\News;
 
 class User extends Authenticatable
 {
@@ -23,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'privilege',
+        'is_active',
     ];
 
     /**
@@ -32,7 +33,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -42,12 +42,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'privilege' => 'array',
+        'active' => 'boolean',
     ];
-
-    
-    // LEFT JOIN news ON users.id = news.user_id
-    public function berita()
-    {
-        return $this->hasMany(News::class);
-    }
 }

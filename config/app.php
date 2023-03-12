@@ -232,4 +232,37 @@ return [
 
     ],
 
+    // custom
+
+    'modules' => [ 'event' => 'Kegiatan', 'finance' => 'Keuangan', 'photo' => 'Foto', 'user' => 'Pengguna', 'video' => 'Video'  ],
+
+    'google' => [
+        'oauth' => [
+            'client_id' => '1019558607462-baij6mnogsuap05oggmd15lvbj8nrg51.apps.googleusercontent.com',
+            'client_secret' => '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',
+            'scopes' => [
+                'https://www.googleapis.com/auth/photoslibrary',
+                'https://www.googleapis.com/auth/photoslibrary.readonly',
+
+                'https://www.googleapis.com/auth/youtube.readonly',
+            ]
+        ],
+        'youtube' => [
+            'channel_id' => 'UC4S8BMQwpazjerZdwbeIylg',
+        ],
+        
+        'access_token' => 'ya29.a0AVvZVspt5pRo83_JXUmVeIHS3OrGPWZfyVjP4kXZl4Lvs1R3ARowC8TsISc_xXfVomEJzmxQfEYx8vUoBNKLsge7uth7_LuugttK2J3C6L7ZA9fOqFJaqPrDZC8z0HWvLZ8reQaC5eDtf3XyCIMabcIEHfr9nAaCgYKAS4SARISFQGbdwaI0RYmCGyHGF8pIPv6sCsBsw0165'
+    ],
+
+    // 'google_client_id' => '1019558607462-baij6mnogsuap05oggmd15lvbj8nrg51.apps.googleusercontent.com',
+    // 'google_client_secret' => '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',
+    // 'google_scopes' => [
+    //     'https://www.googleapis.com/auth/photoslibrary',
+    //     'https://www.googleapis.com/auth/photoslibrary.readonly',
+
+    //     'https://www.googleapis.com/auth/youtube.readonly',
+    // ],
+
+    // 'google_youtube_channel' => 'UC4S8BMQwpazjerZdwbeIylg',
+
 ];
