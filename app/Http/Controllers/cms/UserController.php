@@ -59,7 +59,7 @@ class UserController extends Controller
                 'is_active' => $request->is_active ? TRUE : FALSE,
             ]);
 
-            return redirect()->route('cms-user-list')->with('message_success', [ 'subject' => 'Tambah pengguna baru berhasil', 'message' => 'Pengguna <strong>'.$user.'</strong> berhasil ditambah' ] );
+            return redirect()->route('cms-user-list')->with('message_success', [ 'subject' => 'Tambah pengguna baru berhasil', 'message' => 'Pengguna <strong>'.$user->name.'</strong> berhasil ditambah' ] );
         } catch (\Throwable $th) {
             return redirect()->route('cms-user-create')->with('message_error', [ 'subject' => 'Tambah pengguna baru gagal', 'message' => $th->getMessage() ] );
         }
