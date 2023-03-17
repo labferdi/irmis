@@ -9,12 +9,12 @@ use Illuminate\Queue\SerializesModels;
 
 use App\Models\User;
 
-class ForgotPasswordMail extends Mailable
+class ForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public $token;
+    protected $user;
+    protected $token;
 
     /**
      * Create a new message instance.
@@ -34,10 +34,12 @@ class ForgotPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->view('cms.mail.forgot_password')
+        return $this->markdown('mail.forgot-password')
+                    ->subject('Reset Password Notification')
+                    ->from('noreply@masjidibnusabil.com', 'Masjid Ibnu Sabil')
                     ->with([
                         'user_name' => $this->user->name,
-                        'token' => $this->token
-                    ]);
+                        'url' => route('cms-reset-password-form', ['token' => $this->token])
+                    ]);;
     }
 }
