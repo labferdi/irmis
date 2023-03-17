@@ -32,6 +32,7 @@ Route::name('cms-')->prefix('cms')->group(function () {
     Route::post('/forgot/password', [ AuthenticateController::class, 'forgot_password_validate' ] )->name('forgot-password-validate');
 
     Route::get('/reset/password/{token}', [ AuthenticateController::class, 'reset_password_form' ] )->name('reset-password-form');
+    Route::post('/reset/password/{token}', [ AuthenticateController::class, 'reset_password_validate' ] )->name('reset-password-validate');
     // Route::post('/reset/password', [ AuthenticateController::class, 'reset_password_validate' ] )->name('reset-password-validate');
 
     Route::get('/login', [ AuthenticateController::class, 'login_form' ] )->name('login-form');

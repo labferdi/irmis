@@ -64,7 +64,7 @@
                             @foreach($modules as $k => $v)
                                 <div class="col-sm-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="privilege[]" value="{{ $k }}" id="{{ $k }}" @if($user && in_array($k, $user->privilege)) checked @endif >
+                                        <input class="form-check-input" type="checkbox" name="privilege[]" value="{{ $k }}" id="{{ $k }}" @if($user && $user->privilege && in_array($k, $user->privilege)) checked @endif >
                                         <label class="form-check-label" for="{{ $k }}">{{ $v }}</label>
                                     </div>
                                 </div>

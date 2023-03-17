@@ -11,6 +11,7 @@
         <div class="card-body">
             <form action="" method="post">
                 @csrf
+                <input type="hidden" name="email" value="{{ $user->email }}">
                 <div class="input-group @error('password') @else mb-3 @endif">
                     <input type="password" name="password" class="form-control" placeholder="Password baru">
                     <div class="input-group-append">
