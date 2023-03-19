@@ -41,12 +41,12 @@ class UserController extends Controller
             'email' => 'required|unique:users,email|email:rfc,dns',
             'password' => 'required|min:8',
         ],[
-            'name.required' => 'Nama lengkap wajib diisi',
+            'name.required' => 'Nama lengkap harus diisi',
             'name.max' => 'Nama lengkap maksimal 200 karakter',
-            'email.required' => 'Email wajib diisi',
+            'email.required' => 'Email harus diisi',
             'email.unique' => 'Email sudah ada sebelumnya',
             'email.email' => 'Format email tidak valid',
-            'password.required' => 'Password wajib diisi',
+            'password.required' => 'Password harus diisi',
             'password.min' => 'Password minimal 8 karakter',
         ]);
 
@@ -80,7 +80,7 @@ class UserController extends Controller
             'email' => 'required|unique:users,email,'.$user->id.'|email:rfc,dns',
             'password' => 'nullable|min:8',
         ],[
-            'name.required' => 'Nama lengkap wajib diisi',
+            'name.required' => 'Nama lengkap harus diisi',
             'name.max' => 'Nama lengkap maksimal 200 karakter',
             'email.unique' => 'Email sudah ada sebelumnya',
             'email.email' => 'Format email tidak valid',

@@ -39,7 +39,7 @@ class ForgotPassword extends Mailable
                     ->from('noreply@masjidibnusabil.com', 'Masjid Ibnu Sabil')
                     ->with([
                         'user_name' => $this->user->name,
-                        'url' => route('cms-reset-password-form', ['token' => $this->token])
+                        'url' => route('cms-reset-password', ['token' => $this->token])
                     ]);;
     }
 }

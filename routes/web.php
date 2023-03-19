@@ -11,6 +11,10 @@ Route::get('/', function(){
     return view('welcome');
 });
 
+Route::get('/canvas', function(){
+    return view('cms.index');
+});
+
 Route::get('/photo', [ GoogleController::class, 'photo' ] );
 Route::get('/video', [ GoogleController::class, 'video' ] );
 
@@ -27,17 +31,30 @@ Route::name('cms-')->prefix('cms')->group(function () {
     // Route::get('/register', [ AuthenticateController::class, 'register_form' ] )->name('register-form');
     // Route::post('/register', [ AuthenticateController::class, 'register_validate' ] )->name('register-validate');
     
-    Route::get('/forgot/password', [ AuthenticateController::class, 'forgot_password_form' ] )->name('forgot-password-form');
-    Route::post('/forgot/password', [ AuthenticateController::class, 'forgot_password_validate' ] )->name('forgot-password-validate');
+    Route::get('/forgot/password', [ AuthenticateController::class, 'forgot_password_form' ] )->name('forgot-password');
+    Route::post('/forgot/password', [ AuthenticateController::class, 'forgot_password_validate' ] )->name('forgot-password-save');
 
-    Route::get('/reset/password/{token}', [ AuthenticateController::class, 'reset_password_form' ] )->name('reset-password-form');
-    Route::post('/reset/password/{token}', [ AuthenticateController::class, 'reset_password_validate' ] )->name('reset-password-validate');
+    Route::get('/reset/password/{token}', [ AuthenticateController::class, 'reset_password_form' ] )->name('reset-password');
+    Route::post('/reset/password/{token}', [ AuthenticateController::class, 'reset_password_validate' ] )->name('reset-password-save');
 
-    Route::get('/login', [ AuthenticateController::class, 'login_form' ] )->name('login-form');
-    Route::post('/login', [ AuthenticateController::class, 'login_validate' ] )->name('login-validate');
+    Route::get('/login', [ AuthenticateController::class, 'login_form' ] )->name('login');
+    Route::post('/login', [ AuthenticateController::class, 'login_validate' ] )->name('login-save');
     
-    Route::get('/logout', [ AuthenticateController::class, 'logout' ] )->name('logout');
+    
+    /* -------------------------------- */
+    
+    Route::middleware(['auth'])->group(function () {
 
+        # logout
+        Route::get('/logout', [ AuthenticateController::class, 'logout' ] )->name('logout');
+
+        # change password
+        Route::get('/change/password', [ AuthenticateController::class, 'change_password_form' ] )->name('change-password');
+        Route::post('/change/password', [ AuthenticateController::class, 'change_password_save' ] )->name('change-password-save');
+
+
+    });
+    
     
     /* -------------------------------- */
 

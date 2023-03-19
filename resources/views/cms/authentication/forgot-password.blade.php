@@ -6,6 +6,8 @@
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <a class="h3"><b>Lupa Password</b></a>
+            <!-- atur ulang password -->
+            <!-- silahkan masukkan alamat email anda. kami akan mengirimkan email untuk mengganti password anda -->
         </div>
 
         <div class="card-body">
@@ -31,7 +33,7 @@
             </form>
 
             <p class="mt-3 mb-1">
-                <a href="{{ route('cms-login-form') }}">Login</a>
+                <a href="{{ route('cms-login') }}">Login</a>
             </p>
         </div>
     </div>

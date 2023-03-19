@@ -29,6 +29,6 @@ class AuthenticateCms
 
             return back()->with('message_warning', [ 'subject' => 'Akses gagal', 'message' => 'Anda tidak mendapatkan mengakses halaman ini' ] );
         }
-        return redirect()->route('cms-login-form');
+        return redirect()->route('cms-login');
     }
 }

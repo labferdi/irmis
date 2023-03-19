@@ -5,17 +5,14 @@ namespace App\Http\Controllers\cms;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
-
 use App\Models\User;
 use App\Mail\ForgotPassword;
-
 
 
 class AuthenticateController extends Controller
@@ -34,9 +31,9 @@ class AuthenticateController extends Controller
             'email' => 'required|email:rfc,dns',
             'password' => 'required',
         ],[
-            'email.required' => 'Email wajib diisi',
+            'email.required' => 'Email harus diisi',
             'email.email' => 'Format email tidak valid',
-            'password.required' => 'Password wajib diisi',
+            'password.required' => 'Password harus diisi',
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_active' => TRUE ])) {
@@ -50,11 +47,11 @@ class AuthenticateController extends Controller
 
     /*  ----------------- LOGOUT ----------------- */
 
-    public function logout(Request $request)
+    public function logout()
     {
         try {
             Auth::logout();
-            return redirect()->route('cms-login-form')->with('message_success', [ 'subject' => 'Logout berhasil', 'message' => '' ] );
+            return redirect()->route('cms-login')->with('message_success', [ 'subject' => 'Logout berhasil', 'message' => '' ] );
         } catch (\Throwable $th) {
             return back()->with('message_error', [ 'subject' => 'Logout error', 'message' => $th->getMessage() ] );
         }
@@ -71,12 +68,10 @@ class AuthenticateController extends Controller
 
     public function forgot_password_validate(Request $request)
     {
-        // nama@email.com
-
         $request->validate([
             'email' => 'required|email:rfc,dns|exists:users,email',
         ],[
-            'email.required' => 'Email wajib diisi',
+            'email.required' => 'Email harus diisi',
             'email.email' => 'Format email tidak valid',
             'email.exists' => 'Email tidak terdaftar',
         ]);
@@ -106,7 +101,7 @@ class AuthenticateController extends Controller
 
     /*  ----------------- RESET PASSWORD ----------------- */
 
-    public function reset_password_form(Request $request, $token)
+    public function reset_password_form($token)
     {
         $get = DB::table('password_resets')->where('token', $token)->first();
         if($get){
@@ -131,14 +126,14 @@ class AuthenticateController extends Controller
                 $expired_at = Carbon::createFromFormat('Y-m-d H:i:s', $get->created_at)->addMinutes(60);
 
                 if( now() > $expired_at ){
-                    return redirect()->route('cms-forgot-password-form')->with('message_warning', [ 'subject' => 'Token Expired', 'message' => 'Sesi Anda sudah habis, silahkan melakukan permintaan link reset password yang baru' ] );
+                    return redirect()->route('cms-forgot-password')->with('message_warning', [ 'subject' => 'Token Expired', 'message' => 'Sesi Anda sudah habis, silahkan melakukan permintaan link reset password yang baru' ] );
                 }
 
                 $request->validate([
                     'password' => 'required|min:8',
                     'password-confirm' => 'same:password',
                 ],[
-                    'password.required' => 'Password wajib diisi',
+                    'password.required' => 'Password harus diisi',
                     'password.min' => 'Password minimal 8 karakter',
                     'password-confirm.same' => 'Konfirmasi password harus sama dengan Password',
                 ]);
@@ -147,10 +142,10 @@ class AuthenticateController extends Controller
                     $user = User::where('email', $get->email)->first();
                     $user->password = Hash::make($request->password);
                     $user->save();
-                    
+
                     DB::table('password_resets')->where('token', $token)->where('email', $get->email)->delete();
 
-                    return redirect()->route('cms-login-form')->with('message_success', [ 'subject' => 'Reset password berhasil', 'message' => 'Reset password Anda berhasil, silahkan login kembali.' ] );
+                    return redirect()->route('cms-login')->with('message_success', [ 'subject' => 'Reset password berhasil', 'message' => 'Reset password Anda berhasil, silahkan login kembali.' ] );
                 } catch (\Throwable $th) {
                     return back()->with('message_error', [ 'subject' => 'Reset password error', 'message' => $th->getMessage() ] );
                 }
@@ -158,4 +153,41 @@ class AuthenticateController extends Controller
         }
         abort(404);
     }
+
+
+    /*  ----------------- RESET PASSWORD ----------------- */
+
+    public function change_password_form()
+    {
+        return view('cms.authentication.change-password', [ 'user' => Auth::user() ]);
+    }
+
+    public function change_password_save(Request $request)
+    {
+        $request->validate([
+            'password_old' => 'required|current_password',
+            'password' => 'required|min:8',
+            'password-confirm' => 'same:password',
+        ],[
+            'password_old.required' => 'Password lama anda harus diisi',
+            'password_old.current_password' => 'Password lama anda salah',
+            'password.required' => 'Password baru harus diisi',
+            'password.min' => 'Password baru minimal 8 karakter',
+            'password-confirm.same' => 'Konfirmasi password harus sama dengan password baru',
+        ]);
+
+        try {
+            $auth = Auth::user();
+            $user = User::find( $auth->id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            Auth::setUser($user);
+
+            return redirect()->route('cms-index')->with('message_success', [ 'subject' => 'Ubah password berhasil', 'message' => '' ] );
+        } catch (\Throwable $th) {
+            return back()->with('message_error', [ 'subject' => 'Ubah password error', 'message' => $th->getMessage() ] );
+        }
+    }
+
 }

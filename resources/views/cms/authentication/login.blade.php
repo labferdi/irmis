@@ -44,7 +44,7 @@
             </form>
 
             <p class="mt-3 mb-1">
-                <a href="{{ route('cms-forgot-password-form') }}">Lupa password ?</a>
+                <a href="{{ route('cms-forgot-password') }}">Lupa password ?</a>
             </p>
         </div>
     </div>
