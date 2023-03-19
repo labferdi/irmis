@@ -2,10 +2,10 @@
 
 namespace App\Library;
 
-use Request;
-use Session;
-use Cache;
-use Str;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Request;
+// use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 use Google;
 
@@ -43,11 +43,11 @@ class GoogleLibrary
 
             if( Request::query('code') ){
                 $token = $this->client->fetchAccessTokenWithAuthCode( Request::query('code') );
-                Cache::put('access_token', $token['access_token'], $seconds = $token['expires_in']);
+                Cache::put('access_token', $token['access_token'], $token['expires_in']);
                 return redirect()->to( url()->current() )->send();
             }
 
-            $authenticationUrl = $client->createAuthUrl();
+            $authenticationUrl = $this->client->createAuthUrl();
             return redirect()->to( $authenticationUrl )->send();
         }
     }
@@ -62,7 +62,7 @@ class GoogleLibrary
             return redirect()->to( url()->current() )->send();
         }
 
-        $authenticationUrl = $client->createAuthUrl();
+        $authenticationUrl = $this->client->createAuthUrl();
         return redirect()->to( $authenticationUrl )->send();
     }
 
