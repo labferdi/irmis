@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('assets/cms/plugins/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/cms/plugins/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/cms/css/adminlte.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('assets/cms/css/bootstrap.min.css') }}"> -->
     
     <style>
         .toast-message > strong {
@@ -34,10 +34,10 @@
     </div>
     <!-- /.wrapper -->
 
-    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
-    <script src="{{ asset('assets/js/adminlte.js') }}"></script>
+    <script src="{{ asset('assets/cms/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/cms/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/cms/plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('assets/cms/js/adminlte.js') }}"></script>
     
     @if( session('message_success') )
     <script>
