@@ -11,10 +11,6 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/canvas', function(){
-    return view('cms.index');
-});
-
 Route::get('/photo', [ GoogleController::class, 'photo' ] );
 Route::get('/video', [ GoogleController::class, 'video' ] );
 
